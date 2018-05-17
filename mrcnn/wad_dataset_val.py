@@ -24,7 +24,9 @@ class WadDatasetVal(utils.Dataset):
 	def get_datadir(self):
 		cwd = os.getcwd()
 		idx = cwd.find('Mask_RCNN')
-		ddir = os.path.join(cwd[:49],'cvpr-2018-autonomous-driving')
+		root = cwd[:49]
+		print(root)
+		ddir = os.path.join(root,'cvpr-2018-autonomous-driving')
 		print(ddir)
 		return ddir
 
