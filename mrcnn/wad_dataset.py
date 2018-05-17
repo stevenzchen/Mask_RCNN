@@ -15,9 +15,9 @@ class WadDataset(utils.Dataset):
     	files = os.listdir(datadir)
     	np.random.shuffle(files)
     	filelist = []
-    	if mode = 'train':
+    	if mode == 'train':
     		filelist = files[:-1000]
-    	elif mode = 'val':
+    	elif mode == 'val':
     		filelist = files[-1000:]
     	return filelist
 
