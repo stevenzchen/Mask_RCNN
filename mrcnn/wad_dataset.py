@@ -75,6 +75,7 @@ class WadDataset(utils.Dataset):
 				masks.append(mask)
 		if len(ids) == 0:
 			return [], []
+		print("NUM INSTANCES: ", len(ids), len(masks))
 		return np.array(ids), np.stack(masks,axis=2)
 
 	def load_wad(self):

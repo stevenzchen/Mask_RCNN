@@ -24,8 +24,8 @@ class WadConfig(Config):
     DETECTION_MIN_CONFIDENCE = 0.7
 
     # Maximum number of ground truth instances to use in one image
-    MAX_GT_INSTANCES = 20
-    DETECTION_MAX_INSTANCES = 20
+    MAX_GT_INSTANCES = 120
+    DETECTION_MAX_INSTANCES = 120
 
     # Use smaller anchors because our image and objects are small
     #RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)  # anchor side in pixels
