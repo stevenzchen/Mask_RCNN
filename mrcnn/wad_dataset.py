@@ -58,6 +58,8 @@ class WadDataset(utils.Dataset):
 		for instance in instances:
 			if instance != 255 and instance != 65535:
 				wad_id = int(instance / 1000)
+				if wad_id not in wad_to_ours:
+					continue
 				our_id = wad_to_ours[wad_id]
 				mask = (label_im == instance)
 				mask = mask.astype(int)
