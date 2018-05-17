@@ -120,7 +120,7 @@ class WadDatasetVal(utils.Dataset):
 
 		class_ids,segm_masks = self.get_masks(segm_img)
 		# Map class names to class IDs.
-		return segm_masks, class_ids.astype(np.int32)
+		return segm_masks, np.array(class_ids).astype(np.int32)
 
 #dataset_train = WadDataset()
 #dataset_train.load_wad()
