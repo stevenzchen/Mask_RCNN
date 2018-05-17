@@ -74,7 +74,7 @@ class WadDatasetVal(utils.Dataset):
 				masks.append(mask)
 		if len(ids) == 0:
 			return [], []
-		return np.array(ids), np.stack(masks,axis=2)
+		return ids, np.stack(masks,axis=2)
 
 	def load_wad(self):
 		"""Generate the requested number of synthetic images.
@@ -132,7 +132,7 @@ class WadDatasetVal(utils.Dataset):
 
 		class_ids,segm_masks = self.get_masks(segm_img)
 		# Map class names to class IDs.
-		return segm_masks, class_ids.astype(np.int32)
+		return segm_masks, np.array(class_ids).astype(np.int32)
 
 #dataset_train = WadDataset()
 #dataset_train.load_wad()
