@@ -9,7 +9,7 @@ class WadDataset(utils.Dataset):
 	"""Generates the WAD dataset.
 	"""
 
-	def get_filelist(datadir,mode):
+	def get_filelist(self,datadir,mode):
 		np.random.seed(231)
 		files = os.listdir(datadir)
 		np.random.shuffle(files)
@@ -29,7 +29,7 @@ class WadDataset(utils.Dataset):
 		self.datadir = '/home/antoniotantorres/project/cvpr-2018-autonomous-driving'
 		self.object_map = {'BG':0,'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
-		self.filelist = get_filelist(self.datadir,'train')
+		self.filelist = self.get_filelist(self.datadir,'train')
 
 	def get_masks(self,label_im):
 		"""Return lists of binary masks and ids corresponding to instances.
