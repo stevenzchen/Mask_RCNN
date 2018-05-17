@@ -21,13 +21,18 @@ class WadDatasetVal(utils.Dataset):
 			filelist = files[-1000:]
 		return filelist
 
+	def get_datadir(self):
+		cwd = os.getcwd()
+		idx = cwd.find('Mask_RCNN')
+		ddir = os.path.join(cwd[:49],'cvpr-2018-autonomous-driving')
+
 	def __init__(self,class_map=None):
 		self._image_ids = []
 		self.image_info = []
 		# Background is always the first class
 		self.class_info = [{"source": "wad", "id": 0, "name": "background"}]
 		self.source_class_ids = {}
-		self.datadir = '/home/antoniotantorres/project/cvpr-2018-autonomous-driving'
+		self.datadir = self.get_datadir()
 		self.object_map = {'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
 		x_train_dir = os.path.join(self.datadir, 'train_color')
