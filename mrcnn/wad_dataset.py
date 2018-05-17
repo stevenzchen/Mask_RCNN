@@ -27,7 +27,7 @@ class WadDataset(utils.Dataset):
 		# Background is always the first class
 		self.class_info = [{"source": "wad", "id": 0, "name": "background"}]
 		self.source_class_ids = {}
-		self.datadir = '/home/antoniotantorres/project/cvpr-2018-autonomous-driving'
+		self.datadir = '/home/stevenzc/.kaggle/competitions/cvpr-2018-autonomous-driving'
 		self.object_map = {'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
 		x_train_dir = os.path.join(self.datadir, 'train_color')
@@ -65,6 +65,8 @@ class WadDataset(utils.Dataset):
 				mask = mask.astype(int)
 				ids.append(our_id)
 				masks.append(mask)
+		if len(ids) == 0:
+			return [], []
 		return np.array(ids), np.stack(masks,axis=2)
 
 	def load_wad(self):
