@@ -29,7 +29,8 @@ class WadDatasetVal(utils.Dataset):
 		self.datadir = '/home/antoniotantorres/project/cvpr-2018-autonomous-driving'
 		self.object_map = {'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
-		self.filelist = self.get_filelist(self.datadir,'val')
+		x_train_dir = os.path.join(self.datadir, 'train_color')
+		self.filelist = self.get_filelist(x_train_dir,'val')
 
 	def get_masks(self,label_im):
 		"""Return lists of binary masks and ids corresponding to instances.
