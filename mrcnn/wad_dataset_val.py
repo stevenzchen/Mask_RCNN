@@ -73,7 +73,7 @@ class WadDatasetVal(utils.Dataset):
 				ids.append(our_id)
 				masks.append(mask)
 		if len(ids) == 0:
-			return [], []
+			return [0], np.zeros_like(label_im).astype(np.int8)
 		return ids, np.stack(masks,axis=2)
 
 	def load_wad(self):

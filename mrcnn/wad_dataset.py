@@ -74,7 +74,7 @@ class WadDataset(utils.Dataset):
 				ids.append(our_id)
 				masks.append(mask)
 		if len(ids) == 0:
-			return [], []
+			return [0], np.zeros_like(label_im).astype(np.int8)
 		# print("NUM INSTANCES: ", len(ids), len(masks), 'MASK SIZE: ', masks[0].shape)
 		return ids, np.stack(masks,axis=2)
 
