@@ -73,14 +73,15 @@ class WadDataset(utils.Dataset):
 
 		# Add classes
 		for objName,class_num in self.object_map.items():
-		    self.add_class("wad", class_num, objName)
+			 self.add_class("wad", class_num, objName)
 
 		# Add images
 		image_id = 0
 		for filename in self.filelist:
+			print('FILE train', filename)
 			if filename.endswith(".jpg"): 
 				rootname = filename[:-4]
-
+				print(filename)
 				xfilepath = os.path.join(x_train_dir,filename)
 				yfilepath = os.path.join(y_train_dir,rootname+'.png')
 				self.add_image('wad',image_id = image_id, xfilepath = xfilepath, rootname = rootname, yfilepath = yfilepath)

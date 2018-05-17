@@ -73,7 +73,7 @@ class WadDatasetVal(utils.Dataset):
 
 		# Add classes
 		for objName,class_num in self.object_map.items():
-		    self.add_class("wad", class_num, objName)
+			self.add_class("wad", class_num, objName)
 
 		# Add images
 		image_id = 0
