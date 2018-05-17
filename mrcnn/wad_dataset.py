@@ -69,12 +69,13 @@ class WadDataset(utils.Dataset):
 					continue
 				our_id = wad_to_ours[wad_id]
 				mask = (label_im == instance)
-				mask = mask.astype(int)
+				# reduce size of mask by factor of 2
+				mask = mask.astype(np.int8)
 				ids.append(our_id)
 				masks.append(mask)
 		if len(ids) == 0:
 			return [], []
-		print("NUM INSTANCES: ", len(ids), len(masks), 'MASK SIZE: ', masks[0].shape)
+		# print("NUM INSTANCES: ", len(ids), len(masks), 'MASK SIZE: ', masks[0].shape)
 		return ids, np.stack(masks,axis=2)
 
 	def load_wad(self):
@@ -133,7 +134,7 @@ class WadDataset(utils.Dataset):
 		segm_img = skimage.io.imread(segm_img_path)
 
 		class_ids,segm_masks = self.get_masks(segm_img)
-		print("SEGM_MASKS SHAPE", segm_masks.shape)
+		# print("SEGM_MASKS SHAPE", segm_masks.shape)
 		# Map class names to class IDs.
 		return segm_masks, np.array(class_ids).astype(np.int32)
 

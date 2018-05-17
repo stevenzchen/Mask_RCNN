@@ -69,7 +69,7 @@ class WadDatasetVal(utils.Dataset):
 					continue
 				our_id = wad_to_ours[wad_id]
 				mask = (label_im == instance)
-				mask = mask.astype(int)
+				mask = mask.astype(np.int8)
 				ids.append(our_id)
 				masks.append(mask)
 		if len(ids) == 0:
