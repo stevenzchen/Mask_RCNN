@@ -1,3 +1,4 @@
+import skimage
 import os
 import numpy as np
 import cv2
@@ -84,7 +85,7 @@ class WadDatasetVal(utils.Dataset):
 
 				xfilepath = os.path.join(x_train_dir,filename)
 				yfilepath = os.path.join(y_train_dir,rootname+'.png')
-				self.add_image('wad',image_id = image_id, xfilepath = xfilepath, rootname = rootname, yfilepath = yfilepath)
+				self.add_image('wad',image_id = image_id, path = xfilepath,  xfilepath = xfilepath, rootname = rootname, yfilepath = yfilepath)
 				image_id = image_id+1
 
 	def load_image(self, image_id):
@@ -94,7 +95,7 @@ class WadDatasetVal(utils.Dataset):
 		specs in image_info.
 		"""
 		info = self.image_info[image_id]
-		img_path = info['xfilepath']
+		img_path = info['path']
 		#print(img_path)
 		image = skimage.io.imread(img_path)
 
