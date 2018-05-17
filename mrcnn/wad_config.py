@@ -19,7 +19,7 @@ class WadConfig(Config):
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
     IMAGE_MIN_DIM = 448
-    IMAGE_MAX_DIM = 704
+    IMAGE_MAX_DIM = 768
 
     DETECTION_MIN_CONFIDENCE = 0.7
 
@@ -34,8 +34,8 @@ class WadConfig(Config):
     # few objects. Aim to allow ROI sampling to pick 33% positive ROIs.
     #TRAIN_ROIS_PER_IMAGE = 32
 
-    # Use a small epoch since the data is simple
-    STEPS_PER_EPOCH = 80
+    # TODO(stevenzc): this is how often we get an update
+    STEPS_PER_EPOCH = 125
 
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 20
