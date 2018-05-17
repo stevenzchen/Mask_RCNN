@@ -25,6 +25,8 @@ class WadDatasetVal(utils.Dataset):
 		cwd = os.getcwd()
 		idx = cwd.find('Mask_RCNN')
 		ddir = os.path.join(cwd[:49],'cvpr-2018-autonomous-driving')
+		print(ddir)
+		return ddir
 
 	def __init__(self,class_map=None):
 		self._image_ids = []
