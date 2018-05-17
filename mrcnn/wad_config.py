@@ -1,9 +1,9 @@
 from config import Config
 
 class WadConfig(Config):
-    """Configuration for training on the Amazon Shelf Dataset.
+    """Configuration for training on the WAD Dataset.
     Derives from the base Config class and overrides values specific
-    to the toy shapes dataset.
+    to the WAD dataset.
     """
     # Give the configuration a recognizable name
     NAME = "wad"
@@ -42,5 +42,3 @@ class WadConfig(Config):
 
     USE_MINI_MASK = False
     
-#config = ShelfConfig()
-#config.display()

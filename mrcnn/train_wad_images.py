@@ -14,9 +14,9 @@ import utils
 import model as modellib
 import visualize
 from model import log
-from shelf_config import ShelfConfig
-from shelf_dataset import ShelfDataset
-from shelf_dataset_val import ShelfDatasetVal
+from wad_config import WadConfig
+from wad_dataset import WadDataset
+from wad_dataset_val import WadDatasetVal
 
 # Root directory of the project
 num_epochs = 2
@@ -39,12 +39,12 @@ config = WadConfig()
 config.display()
 
 
-print("Making Training Shelf Dataset")
+print("Making Training Wad Dataset")
 dataset_train = WadDataset()
 dataset_train.load_wad()
 dataset_train.prepare()
 
-print("Making Validation Shelf Dataset")
+print("Making Validation Wad Dataset")
 dataset_val = WadDatasetVal()
 dataset_val.load_wad()
 dataset_val.prepare()
