@@ -105,7 +105,7 @@ class WadDataset(utils.Dataset):
 		if info["source"] == "wad":
 			return info
 		else:
-		super(self.__class__).image_reference(self, image_id)
+			super(self.__class__).image_reference(self, image_id)
 
 	def load_mask(self, image_id):
 		"""Generate instance masks for shapes of the given image ID.
