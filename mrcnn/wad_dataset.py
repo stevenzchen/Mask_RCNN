@@ -24,10 +24,10 @@ class WadDataset(utils.Dataset):
 		self._image_ids = []
 		self.image_info = []
 		# Background is always the first class
-		#self.class_info = [{"source": "", "id": 0, "name": "BG"}]
-		#self.source_class_ids = {}
+		self.class_info = [{"source": "wad", "id": 0, "name": "background"}]
+		self.source_class_ids = {}
 		self.datadir = '/home/antoniotantorres/project/cvpr-2018-autonomous-driving'
-		self.object_map = {'BG':0,'car':1,'motorcycle':2,'bicycle':3,'person':4,
+		self.object_map = {'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
 		self.filelist = self.get_filelist(self.datadir,'train')
 
