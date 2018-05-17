@@ -85,7 +85,7 @@ class WadDataset(utils.Dataset):
 				rootname = filename[:-4]
 				#print(filename)
 				xfilepath = os.path.join(x_train_dir,filename)
-				yfilepath = os.path.join(y_train_dir,rootname+'.png')
+				yfilepath = os.path.join(y_train_dir,rootname+'_instanceIds.png')
 				self.add_image('wad',image_id = image_id,path = xfilepath, xfilepath = xfilepath, rootname = rootname, yfilepath = yfilepath)
 				image_id = image_id+1
 
