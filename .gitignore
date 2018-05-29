@@ -1,6 +1,8 @@
 # Data files and directories common in repo root
 datasets/
 logs/
+mrcnn/logs/
+mrcnn/submission.csv
 *.h5
 results/
 temp/
