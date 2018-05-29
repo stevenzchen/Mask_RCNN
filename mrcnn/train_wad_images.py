@@ -19,7 +19,9 @@ from wad_dataset import WadDataset
 from wad_dataset_val import WadDatasetVal
 
 # Root directory of the project
-num_epochs = 2
+
+# TODO(stevenzc): how many epochs, multiply steps per epoch
+num_epochs = 200
 ROOT_DIR = os.getcwd()
 
 # Directory to save logs and trained model
@@ -53,7 +55,8 @@ print("Creating Model")
 # Create model in training mode
 model = modellib.MaskRCNN(mode="training", config=config, model_dir=MODEL_DIR)
 
-init_with = "coco"  # imagenet, coco, or last
+init_with = "last"  # imagenet, coco, or last
+# TODO: change this to last after some training (stevenzc)
 
 print("Initializing with Coco")
 
@@ -76,66 +79,67 @@ print("RUN TRAINING ON MODEL")
 model.train(dataset_train, dataset_val,learning_rate=config.LEARNING_RATE, epochs=num_epochs,layers='heads')
 
 # Recreate the model in inference mode
-inference_config=config
-print("Creating Inference Model")
-model = modellib.MaskRCNN(mode="inference",config=inference_config, model_dir=MODEL_DIR)
+# inference_config=config
+# print("Creating Inference Model")
+# model = modellib.MaskRCNN(mode="inference",config=inference_config, model_dir=MODEL_DIR)
 
-# Get path to saved weights
-# Either set a specific path or find last trained weights
-# model_path = os.path.join(ROOT_DIR, ".h5 file name here")
-model_path = model.find_last()[1]
-print("Loading weights")
-# Load trained weights (fill in path to trained weights here)
-assert model_path != "", "Provide path to trained weights"
-print("Loading weights from ", model_path)
-model.load_weights(model_path, by_name=True)
+# # Get path to saved weights
+# # Either set a specific path or find last trained weights
+# # model_path = os.path.join(ROOT_DIR, ".h5 file name here")
+# model_path = model.find_last()[1]
+# print("Loading weights")
+# # Load trained weights (fill in path to trained weights here)
+# assert model_path != "", "Provide path to trained weights"
+# print("Loading weights from ", model_path)
+# model.load_weights(model_path, by_name=True)
 
-def visualization(model,dataset_val,inference_config):
-    print("Visualization (on random Test Image, Ground Truths)")
-    # Test on a random image
-    image_id = random.choice(dataset_val.image_ids)
-    original_image, image_meta, gt_class_id, gt_bbox, gt_mask = modellib.load_image_gt(dataset_val, inference_config, image_id, use_mini_mask=False)
-    log("original_image", original_image)
-    log("image_meta", image_meta)
-    log("gt_class_id", gt_class_id)
-    log("gt_bbox", gt_bbox)
-    log("gt_mask", gt_mask)
-    visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,dataset_train.class_names,figsize=(8, 8))
-    print("Detecting for test image")
-    results = model.detect([original_image], verbose=1)
-    print("Visualization (on random Test Image, Predicted)")
-    r = results[0]
-    visualize.display_instances(original_image, r['rois'], r['masks'], r['class_ids'], 
-    dataset_val.class_names, r['scores'])
-    
-visualization(model,dataset_val,inference_config)
+# def visualization(model,dataset_val,inference_config):
+#     print("Visualization (on random Test Image, Ground Truths)")
+#     # Test on a random image
+#     image_id = random.choice(dataset_val.image_ids)
+#     original_image, image_meta, gt_class_id, gt_bbox, gt_mask = modellib.load_image_gt(dataset_val, inference_config, image_id, use_mini_mask=False)
+#     log("original_image", original_image)
+#     log("image_meta", image_meta)
+#     log("gt_class_id", gt_class_id)
+#     log("gt_bbox", gt_bbox)
+#     log("gt_mask", gt_mask)
+#     visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,dataset_train.class_names,figsize=(8, 8))
+#     print("Detecting for test image")
+#     results = model.detect([original_image], verbose=1)
+#     print("Visualization (on random Test Image, Predicted)")
+#     r = results[0]
+#     visualize.display_instances(original_image, r['rois'], r['masks'], r['class_ids'], 
+#     dataset_val.class_names, r['scores'])
+
+# TODO(stevenzc): this won't work because we don' thave a display
+# visualization(model,dataset_val,inference_config)
 
 # Compute VOC-Style mAP @ IoU=0.5
 # Running on 10 images. Increase for better accuracy.
-print("Evaluating on validation set, just 10 images")
-image_ids = np.random.choice(dataset_val.image_ids, 10)
-APs = []
-for image_id in image_ids:
-    # Load image and ground truth data
-    image, image_meta, gt_class_id, gt_bbox, gt_mask =\
-    modellib.load_image_gt(dataset_val, inference_config, image_id, use_mini_mask=False)
-    molded_images = np.expand_dims(modellib.mold_image(image, inference_config), 0)
-    # Run object detection
-    results = model.detect([image], verbose=0)
-    r = results[0]
-    if(r['masks'].shape[0]==0):
-        print('NO MASKS PREDICTED')
-        APs.append(0)
-        continue
-    print(gt_mask.shape,r['masks'].shape,r["rois"].shape, r["class_ids"].shape, r["scores"].shape)
-    # Compute AP
-    AP, precisions, recalls, overlaps =\
-    utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
-     r["rois"], r["class_ids"], r["scores"], r['masks'])
-    print(AP)
-    APs.append(AP)
+# print("Evaluating on validation set, just 10 images")
+# image_ids = np.random.choice(dataset_val.image_ids, 10)
+# APs = []
+# for image_id in image_ids:
+#     # Load image and ground truth data
+#     image, image_meta, gt_class_id, gt_bbox, gt_mask =\
+#     modellib.load_image_gt(dataset_val, inference_config, image_id, use_mini_mask=False)
+#     molded_images = np.expand_dims(modellib.mold_image(image, inference_config), 0)
+#     # Run object detection
+#     results = model.detect([image], verbose=0)
+#     r = results[0]
+#     if(r['masks'].shape[0]==0):
+#         print('NO MASKS PREDICTED')
+#         APs.append(0)
+#         continue
+#     print(gt_mask.shape,r['masks'].shape,r["rois"].shape, r["class_ids"].shape, r["scores"].shape)
+#     # Compute AP
+#     AP, precisions, recalls, overlaps =\
+#     utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
+#      r["rois"], r["class_ids"], r["scores"], r['masks'])
+#     print(AP)
+#     APs.append(AP)
 
-print("mAP: ", np.mean(APs))
+# print("mAP: ", np.mean(APs))
 #visualize(model,dataset_val,inference_config)
 
 

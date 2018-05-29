@@ -21,7 +21,7 @@ class WadConfig(Config):
     IMAGE_MIN_DIM = 448
     IMAGE_MAX_DIM = 768
 
-    DETECTION_MIN_CONFIDENCE = 0.7
+    DETECTION_MIN_CONFIDENCE = 0.6
 
     # Maximum number of ground truth instances to use in one image
     MAX_GT_INSTANCES = 120
@@ -35,7 +35,7 @@ class WadConfig(Config):
     #TRAIN_ROIS_PER_IMAGE = 32
 
     # TODO(stevenzc): this is how often we get an update
-    STEPS_PER_EPOCH = 125
+    STEPS_PER_EPOCH = 250
 
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 20
