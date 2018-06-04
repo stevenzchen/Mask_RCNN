@@ -37,8 +37,4 @@ for txt in reversed(os.listdir(ddir)):
 					next_img = skimage.io.imread(next_img_path, as_gray=True)
 
 				stacked_frames = np.stack((prev_img,cur_img,next_img),axis=2)
-				skimage.io.imsave(os.path.join(ddir,'train_stacked','stacked'+fn,stacked_frames)
-
-					
-			#for line in content:
-				#print(line, "!ENDZ!")
+				skimage.io.imsave(os.path.join(ddir,'train_stacked','stacked'+fn,stacked_frames))
