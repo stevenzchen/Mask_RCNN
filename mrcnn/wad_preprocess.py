@@ -12,7 +12,7 @@ for txt in reversed(os.listdir(ddir)):
 	if txt[:4] == 'road':
 		print(txt)
 		txt_path = os.path.join(ddir,txt)
-		with open(txt) as f:
+		with open(txt_path) as f:
 			content = f.readlines()
 			num_frames = len(content)
 			for i,line in enumerate(content):
