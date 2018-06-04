@@ -1,4 +1,4 @@
-import skimage
+import skimage.io
 import numpy as np 
 import os
 
