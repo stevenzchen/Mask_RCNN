@@ -8,7 +8,7 @@ idx = cwd.find('Mask_RCNN')
 root = cwd[:idx]
 ddir = os.path.join(root,'cvpr-2018-autonomous-driving')
 train_color = os.path.join(ddir,'train_color')
-for txt in os.listdir(ddir):
+for txt in reversed(os.listdir(ddir)):
 	if txt[:4] == 'road':
 		print(txt)
 		txt_path = os.path.join(ddir,txt)
