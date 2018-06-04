@@ -22,7 +22,7 @@ for txt in reversed(os.listdir(ddir)):
 				if not os.path.exists(fn_path):
 					continue
 
-				cur_img = skimage.io.imread(fn_path, as_gray=True)
+				cur_img = skimage.io.imread(fn_path, flatten=True)
 				print(cur_img.shape)
 				prev_img = None
 				next_img = None
