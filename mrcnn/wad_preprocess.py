@@ -31,12 +31,12 @@ for txt in reversed(os.listdir(ddir)):
 					prev_img = cur_img
 				else:
 					prev_img_path = os.path.join(train_color,content[i-1][41:70])
-					prev_img = skimage.io.imread(prev_img_path, as_gray=True)
+					prev_img = skimage.io.imread(prev_img_path, flatten=True)
 				if i == num_frames-1:
 					next_img = cur_img
 				else:
 					next_img_path = os.path.join(train_color,content[i+1][41:70])
-					next_img = skimage.io.imread(next_img_path, as_gray=True)
+					next_img = skimage.io.imread(next_img_path, flatten=True)
 
 				stacked_frames = np.stack((prev_img,cur_img,next_img),axis=2)
 				skimage.io.imsave(os.path.join(ddir,'train_stacked','stacked'+fn),stacked_frames)
