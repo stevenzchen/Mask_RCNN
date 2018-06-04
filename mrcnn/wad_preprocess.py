@@ -23,7 +23,6 @@ for txt in reversed(os.listdir(ddir)):
 					continue
 
 				cur_img = skimage.io.imread(fn_path, flatten=True)
-				print(cur_img.shape)
 				prev_img = None
 				next_img = None
 
