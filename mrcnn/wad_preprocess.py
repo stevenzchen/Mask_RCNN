@@ -11,6 +11,7 @@ train_color = os.path.join(ddir,'train_color')
 for txt in reversed(os.listdir(ddir)):
 	if txt[:4] == 'road':
 		print(txt)
+		txt_path = os.path.join(ddir,txt)
 		with open(txt) as f:
 			content = f.readlines()
 			num_frames = len(content)
