@@ -6,7 +6,7 @@ import utils
 import random
 
 
-class WadDataset(utils.Dataset):
+class WadStackedDataset(utils.Dataset):
 	"""Generates the WAD dataset.
 	"""
 
@@ -39,7 +39,7 @@ class WadDataset(utils.Dataset):
 		self.datadir = self.get_datadir()
 		self.object_map = {'car':1,'motorcycle':2,'bicycle':3,'person':4,
 							'truck':5,'bus':6,'tricycle':7,}
-		x_train_dir = os.path.join(self.datadir, 'train_color')
+		x_train_dir = os.path.join(self.datadir, 'train_stacked')
 		self.filelist = self.get_filelist(x_train_dir,'train')
 
 	def get_masks(self,label_im):
@@ -85,7 +85,7 @@ class WadDataset(utils.Dataset):
 		height, width: the size of the generated images.
 		"""
 
-		x_train_dir = os.path.join(self.datadir, 'train_color')
+		x_train_dir = os.path.join(self.datadir, 'train_stacked')
 		y_train_dir = os.path.join(self.datadir, 'train_label')
 
 		# Add classes
@@ -97,7 +97,7 @@ class WadDataset(utils.Dataset):
 		for filename in self.filelist:
 			#print('FILE train', filename)
 			if filename.endswith(".jpg"): 
-				rootname = filename[:-4]
+				rootname = filename[7:-4]
 				#print(filename)
 				xfilepath = os.path.join(x_train_dir,filename)
 				yfilepath = os.path.join(y_train_dir,rootname+'_instanceIds.png')

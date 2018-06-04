@@ -8,7 +8,7 @@ idx = cwd.find('Mask_RCNN')
 root = cwd[:idx]
 ddir = os.path.join(root,'cvpr-2018-autonomous-driving')
 train_color = os.path.join(ddir,'train_color')
-for txt in reversed(os.listdir(ddir)):
+for txt in os.listdir(ddir):
 	if txt[:4] == 'road':
 		print(txt)
 		txt_path = os.path.join(ddir,txt)
@@ -38,4 +38,7 @@ for txt in reversed(os.listdir(ddir)):
 					next_img = skimage.io.imread(next_img_path, flatten=True)
 
 				stacked_frames = np.stack((prev_img,cur_img,next_img),axis=2)
-				skimage.io.imsave(os.path.join(ddir,'train_stacked','stacked'+fn),stacked_frames)
+				if os.path.exists(os.path.join(ddir,'train_stacked','stacked'+fn)):
+					continue
+				else:
+					skimage.io.imsave(os.path.join(ddir,'train_stacked','stacked'+fn),stacked_frames)
