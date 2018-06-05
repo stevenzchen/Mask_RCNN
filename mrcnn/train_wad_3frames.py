@@ -16,7 +16,7 @@ import visualize
 from model import log
 from wad_config import WadConfig
 from wad_3frames_dataset import WadStackedDataset
-from wad_3_frames_dataset_val import WadStackedDatasetVal
+from wad_3frames_dataset_val import WadStackedDatasetVal
 
 # Root directory of the project
 
