@@ -14,7 +14,7 @@ import utils
 import model as modellib
 import visualize
 from model import log
-from original_wad_config import OriginalWadConfig
+from orig_wad_config import OriginalWadConfig
 from wad_3frames_dataset import WadStackedDataset
 from wad_3frames_dataset_val import WadStackedDatasetVal
 
