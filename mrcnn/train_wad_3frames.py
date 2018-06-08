@@ -21,7 +21,7 @@ from wad_3frames_dataset_val import WadStackedDatasetVal
 # Root directory of the project
 
 # TODO(stevenzc): how many epochs, multiply steps per epoch
-num_epochs = 200
+num_epochs = 300
 ROOT_DIR = os.getcwd()
 
 # Directory to save logs and trained model
