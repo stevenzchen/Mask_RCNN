@@ -14,7 +14,7 @@ import utils
 import model as modellib
 import visualize
 from model import log
-from wad_config import WadConfig
+from wad_config import OriginalWadConfig
 from wad_3frames_dataset import WadStackedDataset
 from wad_3frames_dataset_val import WadStackedDatasetVal
 
@@ -37,7 +37,7 @@ if not os.path.exists(COCO_MODEL_PATH):
     utils.download_trained_weights(COCO_MODEL_PATH)
 
 print("Making config")
-config = WadConfig()
+config = OriginalWadConfig()
 config.display()
 
 
